@@ -1,0 +1,10 @@
+echo "🎨 Running Prettier..."
+npm run format
+
+echo "🔍 Running ESLint..."
+npm run lint
+
+echo "🏗️  Building the application..."
+npm run build
+
+echo "✅ Pre-commit checks passed! Committing changes..."
