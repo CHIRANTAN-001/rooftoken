@@ -49,7 +49,6 @@ export const useCurrentAddress = (): UserCurrentAddressReturn => {
       );
       const data = await response.json();
       if (data.status === "OK" && data.results.length > 0) {
-        console.log(data.results)
         setAddress(data.results[7].formatted_address);
       } else {
         toast.error("Failed to fetch address");
