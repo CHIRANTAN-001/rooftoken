@@ -1,4 +1,4 @@
-import { Element4, Grid4, Notification, Wallet2 } from 'iconsax-reactjs';
+import { Element4, Grid4, I24Support, Notification, Setting, Wallet2 } from 'iconsax-reactjs';
 import React from 'react';
 import Logo from '../ui/Logo';
 import { usePathname } from 'next/navigation';
@@ -20,8 +20,8 @@ const menuItems: MenuItem[] = [
 ];
 
 const bottomMenuItems: MenuItem[] = [
-  { icon: <Element4 />, label: 'Marketplace', href: '/marketplace' },
-  { icon: <Wallet2 />, label: 'Wallet', href: '/wallet' },
+  { icon: <I24Support />, label: 'Help & Support', href: '/help' },
+  { icon: <Setting />, label: 'Settings', href: '/settings' },
 ];
 
 const Sidebar = ({ children }: { children: React.ReactNode }) => {
@@ -38,6 +38,7 @@ const Sidebar = ({ children }: { children: React.ReactNode }) => {
           isOpen ? 'w-[200px]' : 'w-[60px]'
         }`}
       >
+        {/* Icon */}
         <div
           className="cursor-pointer"
           onClick={() => {
@@ -61,6 +62,7 @@ const Sidebar = ({ children }: { children: React.ReactNode }) => {
           )}
         </div>
 
+        {/* Top Menus */}
         <div className="flex flex-col gap-y-[5px] pt-[5px]">
           {menuItems?.map((item, idx) => {
             const isActive = pathName === item.href;
@@ -107,42 +109,53 @@ const Sidebar = ({ children }: { children: React.ReactNode }) => {
           })}
         </div>
 
+        {/* Bottom Menus */}
         <div className="flex flex-col gap-y-[5px] pt-[5px] mt-auto">
           {bottomMenuItems?.map((item, idx) => {
             const isActive = pathName === item.href;
+            const isHelp = item.label === 'Help & Support';
+
+            const bgColor = isHelp
+              ? 'bg-[#F7E733]'
+              : isActive
+                ? 'bg-orange-100'
+                : 'bg-gray-200';
+
+            const hoverClass = isHelp ? '' : 'hover:bg-orange-100';
+
             return (
               <div
                 key={idx}
-                className={`
-                  group
-                  ${isActive ? 'bg-orange-100' : 'bg-gray-200'}
-                  hover:bg-orange-100
-                  ${isOpen ? 'w-[190px]' : 'w-[50px]'}
-                  p-[15px]
-                  h-[50px]
-                  rounded-[5px]
-                  flex items-center gap-x-2
-                  cursor-pointer
-                  transition-colors duration-300
-                `}
+                className={cn(
+                  'group',
+                  bgColor,
+                  hoverClass,
+                  isOpen ? 'w-[190px]' : 'w-[50px]',
+                  'p-[15px] h-[50px] rounded-[5px] flex items-center gap-x-2 cursor-pointer transition-colors duration-300'
+                )}
               >
                 {React.cloneElement(item.icon, {
-                  className: `
-                    size-5
-                    text-ghost-white
-                    ${isActive ? 'text-primary' : ''}
-                    transition-colors duration-300
-                    group-hover:text-primary
-                  `,
+                  className: cn(
+                    'size-5 transition-colors duration-300',
+                    `${isHelp
+                      ? 'text-black' 
+                      : isActive
+                        ? 'text-primary'
+                        : 'text-ghost-white'}`,
+                    `${!isHelp && 'group-hover:text-primary'}`
+                  ),
                 })}
 
                 {isOpen && (
                   <span
                     className={cn(
-                      'text-ghost-white text-base font-medium',
-                      `${isActive ? 'text-primary' : ''}`,
-                      'transition-all duration-300 ease-in-out',
-                      'group-hover:text-primary'
+                      'text-base font-medium transition-all duration-300 ease-in-out',
+                      `${isHelp
+                        ? 'text-black'
+                        : isActive
+                          ? 'text-primary'
+                          : 'text-ghost-white'}`,
+                      `${!isHelp && 'group-hover:text-primary'}`
                     )}
                   >
                     {item.label}
@@ -152,11 +165,12 @@ const Sidebar = ({ children }: { children: React.ReactNode }) => {
             );
           })}
         </div>
+
       </div>
 
       <div className="p-5 overflow-y-auto">{children}</div>
 
-      <div className="bg-black-200 border-l border-gray-400 px-4 py-[28px] h-dvh sticky top-0 overflow-y-auto">
+      <div className="bg-black-200 border-l border-gray-400 px-4 py-[28px] h-dvh sticky top-0 overflow-y-auto scrollbar-hide">
         <AuctionModule />
       </div>
     </div>

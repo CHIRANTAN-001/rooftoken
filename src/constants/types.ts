@@ -13,4 +13,13 @@ export type Property = {
   price_dirham: number;
   token_standard: string;
   type: string;
+  lat: number;
+  lng: number;
 };
+
+export type PropertyCoordinate = {
+  id: number;
+  name: string;
+  lat: number;
+  lng: number;
+}

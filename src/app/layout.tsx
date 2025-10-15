@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import './globals.css';
 import localFont from 'next/font/local';
 import Providers from '@/components/provider/Providers';
+import { Toaster } from 'sonner';
 
 export const metadata: Metadata = {
   title: 'RoofToken',
@@ -63,6 +64,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={aspekta.className}>
       <body className={`antialiased scroll-smooth`}>
+        <Toaster closeButton position='top-center' richColors  />
         <Providers>
           <main className="flex flex-col">{children}</main>
         </Providers>

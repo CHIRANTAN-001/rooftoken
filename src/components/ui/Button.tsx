@@ -29,7 +29,11 @@ const Button = ({
       onClick={onClick}
       className={cn(
         buttonVariants({ variant, type, weight, className }),
-        disabled || loading ? 'cursor-not-allowed opacity-70' : ''
+        disabled || loading ? 'cursor-not-allowed opacity-70' : '',
+        'hover:scale-105 duration-300 ease-in-out',
+        // isHover
+        //   ? 'hover:bg-primary hover:text-ghost-white hover:scale-105 duration-300 ease-in-out'
+        //   : '',
       )}
       disabled={disabled || loading}
       {...attributes}
@@ -56,14 +60,14 @@ const Button = ({
 };
 
 const buttonVariants = cva(
-  'rounded-[5px] text-sm flex items-center justify-center',
+  'rounded-[5px] text-sm flex items-center justify-center cursor-pointer',
   {
     variants: {
       variant: {
-        primary: 'bg-primary text-ghost-white',
-        'primary-shadow': 'bg-primary text-ghost-white shadow-inset-black',
+        primary: 'bg-primary text-ghost-white hover:bg-ghost-white hover:text-primary',
+        'primary-shadow': 'bg-primary text-ghost-white shadow-inset-black hover:bg-ghost-white hover:text-primary',
         'primary-stroke': 'bg-orange-200 border border-orange-300 text-primary',
-        'card-btn': 'bg-black-100 text-white backdrop-blur-[50px]',
+        'card-btn': 'bg-black-100 text-white backdrop-blur-[50px] hover:bg-ghost-white hover:text-primary',
       },
       type: {
         xs: 'text-xs',

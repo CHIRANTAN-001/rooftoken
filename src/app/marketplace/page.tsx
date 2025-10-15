@@ -7,6 +7,7 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import React, { Suspense } from 'react';
 import PropertyCardsGroup from '@/modules/Marketplace/PropertyCardsGroup';
 import Header from '@/components/layout/Header';
+import MapComponent from '@/components/Map';
 
 const MarketplacePageContent = () => {
   const router = useRouter();
@@ -32,6 +33,9 @@ const MarketplacePageContent = () => {
     <Container>
       <Sidebar>
         <Header />
+        <div className='w-full h-[280px] rounded-[10px] py-4'>
+          <MapComponent/>
+        </div>
         <Tab
           propertyType={propertyType || 'all'}
           handleFilterChange={handleFilterChange}

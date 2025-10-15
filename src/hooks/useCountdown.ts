@@ -1,26 +1,27 @@
 import React from 'react';
 
 type Countdown = {
-  days: number;
   hours: number;
   minutes: number;
   seconds: number;
 };
 
 const useCountdown = (targetDate: Date): Countdown => {
-  const calculateTimeLeft = () => {
+  const calculateTimeLeft = (): Countdown => {
     const difference = targetDate.getTime() - new Date().getTime();
 
-    return {
-      days: Math.floor(difference / (1000 * 60 * 60 * 24)),
-      hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
-      minutes: Math.floor((difference / 1000 / 60) % 60),
-      seconds: Math.floor((difference / 1000) % 60),
-    };
+    if (difference <= 0) {
+      return { hours: 0, minutes: 0, seconds: 0 };
+    }
+
+    const hours = Math.floor(difference / (1000 * 60 * 60));
+    const minutes = Math.floor((difference / 1000 / 60) % 60);
+    const seconds = Math.floor((difference / 1000) % 60);
+
+    return { hours, minutes, seconds };
   };
 
-  const [timeLeft, setTimeLeft] =
-    React.useState<Countdown>(calculateTimeLeft());
+  const [timeLeft, setTimeLeft] = React.useState<Countdown>(calculateTimeLeft());
 
   React.useEffect(() => {
     const timer = setInterval(() => {

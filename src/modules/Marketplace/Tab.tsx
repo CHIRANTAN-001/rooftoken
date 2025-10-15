@@ -1,4 +1,4 @@
-import Button from '@/components/ui/Button';
+import { cn } from '@/utils/cn';
 import React from 'react';
 
 type TabProps = {
@@ -19,23 +19,26 @@ const filterOptions: FilterOption[] = [
 
 const Tab = ({ propertyType, handleFilterChange }: TabProps) => {
   return (
-    <div className="flex justify-between items-center pt-5">
+    <div className="flex justify-between items-center">
       <span className="text-white font-seminormal text-2xl">
         Discover Properties
       </span>
 
       <div className="flex flex-wrap items-center gap-2">
         {filterOptions.map((option: FilterOption, index: number) => (
-          <Button
+          <div
             key={index}
-            variant={
-              propertyType === option.value ? 'primary' : 'primary-stroke'
-            }
-            className="h-[46px] px-[17px]"
+            className={cn(
+              "h-[46px] px-[17px] transition-all duration-300 ease-in-out",
+              "rounded-[5px] text-sm flex items-center justify-center cursor-pointer",
+              `${propertyType === option.value ? 'bg-primary text-ghost-white' : 'bg-orange-200 border border-orange-300 text-primary'}`
+            )}
             onClick={() => handleFilterChange(option.value)}
           >
-            {option.name}
-          </Button>
+            <span>
+              {option.name}
+            </span>
+          </div>
         ))}
       </div>
     </div>

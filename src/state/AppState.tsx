@@ -22,6 +22,9 @@ export const appEventsAtom = atom<Record<AppEvent, number>>({
 // Handle sidebar state
 export const isSidebarOpenAtom = atom<boolean>(false);
 
+// Handle popover state
+export const isPopoverOpenAtom = atom<boolean>(false);
+
 export function AppState({ children }: { children?: React.ReactNode }) {
   useAppData();
 

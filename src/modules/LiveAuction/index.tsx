@@ -9,8 +9,8 @@ const AuctionModule = () => {
           Live Auction
         </span>
         <span className="relative flex size-3 justify-center items-center">
-          <span className="absolute inline-flex size-6 rounded-full animate-[pulse_1s_infinite] bg-green-200 opacity-100"></span>
-          <span className="relative inline-flex size-3 rounded-full bg-green-100"></span>
+          <span className="absolute inline-flex size-6 rounded-full bg-green-200 animate-[livePulse_1.2s_infinite] animate-delay-300"></span>
+          <span className="relative inline-flex size-3 rounded-full bg-green-500"></span>
         </span>
       </div>
 
