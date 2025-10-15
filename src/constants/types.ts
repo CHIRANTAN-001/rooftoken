@@ -23,3 +23,8 @@ export type PropertyCoordinate = {
   lat: number;
   lng: number;
 }
+
+export type FilterOption = {
+  name: string;
+  value: string;
+};

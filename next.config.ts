@@ -9,6 +9,11 @@ const nextConfig: NextConfig = {
         destination: '/marketplace',
         permanent: true,
       },
+      {
+        source: '/wallet',
+        destination: '/wallet/balance',
+        permanent: true,
+      },
     ];
   },
 };
