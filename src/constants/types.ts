@@ -17,13 +17,6 @@ export type Property = {
   lng: number;
 };
 
-export type PropertyCoordinate = {
-  id: number;
-  name: string;
-  lat: number;
-  lng: number;
-}
-
 export type FilterOption = {
   name: string;
   value: string;

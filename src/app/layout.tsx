@@ -12,6 +12,11 @@ export const metadata: Metadata = {
 const aspekta = localFont({
   src: [
     {
+      path: '../../public/fonts/Aspekta-350.ttf',
+      weight: '350',
+      style: 'semilight',
+    },
+    {
       path: '../../public/fonts/Aspekta-400.ttf',
       weight: '400',
       style: 'normal',

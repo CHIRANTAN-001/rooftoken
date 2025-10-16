@@ -2,7 +2,7 @@ import { isPopoverOpenAtom } from '@/state/AppState'
 import { useAtom } from 'jotai'
 import React from 'react'
 import SearchBar from './SearchBar'
-import { Dialog, DialogContent } from './ui/dialog'
+import { Dialog, DialogContent, DialogTitle } from './ui/dialog'
 import { propertyData } from '@/constants/propertyData'
 import { Property } from '@/constants/types'
 import Image from 'next/image'
@@ -35,6 +35,7 @@ const PropertySuggestion = () => {
       {isPopoverOpen && (
         <Dialog open={isPopoverOpen} onOpenChange={setIsPopoverOpen}>
           <DialogContent className="sm:max-w-[350px] h-[400px] p-2 overflow-y-auto bg-black-200" showCloseButton={false}>
+            <DialogTitle className='hidden'/>
             <div className="sticky top-0 z-10">
               <input
                 type="text"
@@ -47,9 +48,9 @@ const PropertySuggestion = () => {
                 placeholder='Find apartments'
               />
             </div>
-            <div className="overflow-y-auto h-full scrollbar-hide">
+            <div className="overflow-y-auto h-full scrollbar-hide flex flex-col gap-y-2">
               {propertyData?.map((property: Property) => (
-                <div key={property.id} className="flex items-start gap-x-2">
+                <div key={property.id} className="flex items-start gap-x-2 ">
                   <Image
                     src={PropertyImage}
                     alt="Property Image"

@@ -4,7 +4,7 @@ import { cn } from '@/utils/cn';
 
 type ButtonProps = {
   children: React.ReactNode;
-  variant?: 'primary' | 'primary-shadow' | 'primary-stroke' | 'card-btn';
+  variant?: 'primary' | 'primary-shadow' | 'primary-stroke' | 'card-btn' | 'card-btn-2';
   type?: 'xs' | 'sm' | 'lg' | 'xl' | 'submit';
   weight?: 'normal' | 'medium' | 'semibold' | 'bold';
   className?: string;
@@ -31,9 +31,6 @@ const Button = ({
         buttonVariants({ variant, type, weight, className }),
         disabled || loading ? 'cursor-not-allowed opacity-70' : '',
         'hover:scale-105 duration-300 ease-in-out',
-        // isHover
-        //   ? 'hover:bg-primary hover:text-ghost-white hover:scale-105 duration-300 ease-in-out'
-        //   : '',
       )}
       disabled={disabled || loading}
       {...attributes}
@@ -68,6 +65,7 @@ const buttonVariants = cva(
         'primary-shadow': 'bg-primary text-ghost-white shadow-inset-black hover:bg-ghost-white hover:text-primary',
         'primary-stroke': 'bg-orange-200 border border-orange-300 text-primary',
         'card-btn': 'bg-black-100 text-white backdrop-blur-[50px] hover:bg-ghost-white hover:text-primary',
+        'card-btn-2': 'bg-ghost-white/18 text-white backdrop-blur-[50px] hover:bg-ghost-white hover:text-primary',
       },
       type: {
         xs: 'text-xs',

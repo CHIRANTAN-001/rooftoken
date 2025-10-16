@@ -46,12 +46,14 @@ const WalletLayout = ({ children }: { children: React.ReactNode }) => {
             Wallet
           </span>
         </div>
-        <TabComponent
-          filterOptions={filterOptions}
-          currentValue={pathName}
-          handleFilterChange={handleFilterChange}
-        />
-        <div className=''>
+        <div className='pt-[29.5px]'>
+          <TabComponent
+            filterOptions={filterOptions}
+            currentValue={pathName}
+            handleFilterChange={handleFilterChange}
+          />
+       </div>
+        <div className='pt-[15.5px]'>
           {children}
         </div>
       </div>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import PropertyImage from '../../../public/images/png/property.png';
 import Image from 'next/image';
 import Grid from '../../../public/icon/Grid';
@@ -9,9 +9,10 @@ import { Property } from '@/constants/types';
 
 type PropertyCardProps = {
   data: Property;
+  isOwned?: boolean;
 };
 
-const PropertyCard = ({ data }: PropertyCardProps) => {
+const PropertyCard = ({ data, isOwned = false }: PropertyCardProps) => {
   const getButtonText = (propertyType: string): string => {
     switch (propertyType) {
       case 'rent':
@@ -58,7 +59,7 @@ const PropertyCard = ({ data }: PropertyCardProps) => {
       </div>
 
       {/* Property Details */}
-      <div className="absolute px-5 pt-3 bottom-0 left-0 w-full h-[162px]">
+      <div className="absolute px-5 bottom-0 left-0 w-full h-[162px]">
         <span className="text-white font-semimedium text-xl">{data?.name}</span>
         <div className="flex items-center gap-x-2 mt-[10px]">
           <Grid />
@@ -67,28 +68,41 @@ const PropertyCard = ({ data }: PropertyCardProps) => {
           </span>
         </div>
 
-        <div className="h-[1px] bg-gray-100 mt-[17px]" />
-
-        <div className="w-full flex justify-between items-center pt-4">
-          <div className="flex flex-col gap-y-[6px]">
-            <div className="flex items-center gap-x-[6px]">
-              <EthereumIcon />
-              <span className="text-white font-normal text-sm">
-                {data.price_eth} ETH
-              </span>
-            </div>
-            <div className="flex items-center gap-x-[6px]">
-              <DirhamIcon />
-              <span className="text-white/60 font-normal text-sm">
-                {data?.price_dirham}
-              </span>
-            </div>
+        {isOwned ? (
+          <div className='flex flex-col gap-y-[9px] mt-[15px]'>
+            <Button variant='card-btn' type='submit' weight='normal' className='h-[35px]'>
+              Sell
+            </Button>
+            <Button variant='card-btn-2' type='submit' weight='normal' className='h-[35px]'>
+              Rent Out
+            </Button>
           </div>
+        ) : (
+          <Fragment>
+            <div className="h-[1px] bg-gray-100 mt-[17px]" />
 
-          <Button variant="card-btn" className="w-fit px-10 py-[11.5px]">
-            {getButtonText(data.type)}
-          </Button>
-        </div>
+            <div className="w-full flex justify-between items-center pt-4">
+              <div className="flex flex-col gap-y-[6px]">
+                <div className="flex items-center gap-x-[6px]">
+                  <EthereumIcon />
+                  <span className="text-white font-normal text-sm">
+                    {data.price_eth} ETH
+                  </span>
+                </div>
+                <div className="flex items-center gap-x-[6px]">
+                  <DirhamIcon />
+                  <span className="text-white/60 font-normal text-sm">
+                    {data?.price_dirham}
+                  </span>
+                </div>
+              </div>
+
+              <Button variant="card-btn" className="w-fit px-10 py-[11.5px]">
+                {getButtonText(data.type)}
+              </Button>
+            </div>
+          </Fragment>
+        )}
       </div>
     </div>
   );
